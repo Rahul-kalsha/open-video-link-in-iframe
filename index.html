@@ -1,19 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Demo Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body,h1 {font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-</style>
+    <title>Demo Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body,h1 {
+            font-family: "Raleway", sans-serif
+        }
+
+        body,html {
+            height: 100%
+        }
+        .main-container {max-width: 968px;margin: auto;padding: 10px;}
+        .container {display: block;clear: both;}
+        .video-img-block{--aspectRatio: 16/9;aspect-ratio: var(--aspectRatio);display: inline-block;width: 50%;box-sizing: border-box;float: left;padding: 0px;    margin-right: 10px;margin-bottom: 10px; background: black;}
+        .video-img-block img, .video-img-block video { display: block;object-fit: cover;width: 100%;}
+        .video-img-block iframe {width: 100%; height: 100%;object-fit: cover;margin: 0;}
+        .content-block {display: inline;}
+        .content-block a {color: red}
+    </style>
 </head>
+
 <body>
+    <div class="main-container">
+        <div class="container">
+            <div class="video-img-block" id="video-img-block">
 
-<div>
-
-</div>
-
+            </div>
+            <div class="content-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+            <br>
+            <a href="https://images.unsplash.com/photo-1508433957232-3107f5fd5995" target="_blank" onclick="return loadInIframe(this, 'image');">Click Here For See All Image</a>
+            <br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+            <br>
+            <a href="https://res.cloudinary.com/filmsupply/video/upload/ac_none,vc_auto/static/Home/home-hero.webm" target="_blank" onclick="return loadInIframe(this, 'video');">Click Here For See All Extension Video</a>
+            <br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <br>
+            <a href="https://player.vimeo.com/video/831609262?title=0&portrait=0&byline=0&autoplay=1&muted=true" target="_blank" onclick="return loadInIframe(this, 'video');">Click Here For See All Player Video</a>
+            <br></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function loadInIframe(data, type) {
+            document.getElementById('video-img-block').innerHTML = "";
+            if (type === 'image') {
+                let img = document.createElement('img');img.src = data.getAttribute('href');document.getElementById('video-img-block').appendChild(img);
+            } else if (type === 'video') {
+                let extension = data.getAttribute('href').split('.').pop();
+                let videoExt = ['mp4', 'webm', 'ogg', 'ogv']
+                if (videoExt.includes(extension)) {
+                    let video = document.createElement('video');video.src = data.getAttribute('href');
+                    video.controls = true;
+                    video.muted = false;
+                    document.getElementById('video-img-block').appendChild(video);
+                } else {
+                    let iframe = document.createElement('iframe');iframe.src = data.getAttribute('href');
+                    iframe.frameBorder="0";
+                    document.getElementById('video-img-block').appendChild(iframe)
+                }
+            }
+            return false;
+        }
+    </script>
 </body>
+
 </html>
